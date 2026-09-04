@@ -1,0 +1,1 @@
+# No additional Python packages are required beyond ComfyUI's existing Pillow dependency.

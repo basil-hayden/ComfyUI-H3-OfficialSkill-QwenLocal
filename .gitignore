@@ -1,0 +1,9 @@
+runtime/
+official/
+*.gguf
+*.zip
+*.part
+*.assembling
+download-cache/
+__pycache__/
+*.pyc

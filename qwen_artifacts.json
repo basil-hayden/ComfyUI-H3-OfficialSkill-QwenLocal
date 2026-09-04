@@ -1,0 +1,16 @@
+{
+  "model_upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "quantization_repository": "unsloth/Qwen3.8-27B-GGUF",
+  "quantization_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+  "files": {
+    "Qwen3.8-27B-UD-Q4_K_M.gguf": {"bytes": 16464440224, "expected_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482"},
+    "mmproj-F16.gguf": {"bytes": 927607488, "expected_sha256": "cbb841a9ee0636b2ec172f5bb8df2ea8dfeb01e90fe7c6126581d662a0b4e43e"}
+  },
+  "llama_cpp": {
+    "release": "b10621",
+    "stable_channel": "v0.3.0",
+    "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b10621",
+    "binary_zip_sha256": "23549ccc00b6a18d74348e95d4789f7e96c9efb11cf6e3f1b185baef34d7449f",
+    "cudart_zip_sha256": "1462a050eb4c684921ba51dcc4cc488a036674c3e73e9945ee705b854808d03e"
+  }
+}
