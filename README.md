@@ -1,5 +1,7 @@
 # ComfyUI MiniMax H3 + Official Skill + Local Qwen3.8
 
+[English](README.md) | [简体中文](README_zh-CN.md)
+
 Two ComfyUI workflows that turn a Chinese creative brief and one or two reference
 images into a MiniMax H3 prompt using a fully local Qwen3.8-27B vision-language
 model.
