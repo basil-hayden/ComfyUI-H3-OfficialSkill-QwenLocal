@@ -58,7 +58,7 @@ def managed_server(model, vision, context_length, gpu_layers):
                "--jinja", "--reasoning", "off", "--chat-template-kwargs", '{"enable_thinking":false}',
                "--no-warmup"]
     if vision:
-        command.extend(["--mmproj", str(projector), "--image-max-tokens", "1024"])
+        command.extend(["--mmproj", str(projector), "--image-max-tokens", "512"])
     mm.throw_exception_if_processing_interrupted()
     mm.unload_all_models()
     mm.soft_empty_cache()
@@ -119,9 +119,17 @@ class H3OfficialSkillQwenLocal:
             "seed": ("INT", {"default": 42, "min": 0, "max": 2147483647}),
             "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.05}),
             "max_tokens": ("INT", {"default": 4096, "min": 512, "max": 16384}),
-            "context_length": ("INT", {"default": 16384, "min": 16384, "max": 32768, "step": 4096}),
+            "context_length": ("INT", {"default": 32768, "min": 16384, "max": 65536, "step": 4096}),
             "gpu_layers": ("INT", {"default": 99, "min": 0, "max": 99}),
-        }, "optional": {"image1": ("IMAGE",), "image2": ("IMAGE",)}}
+        }, "optional": {
+            "image1": ("IMAGE",), "image2": ("IMAGE",), "image3": ("IMAGE",),
+            "image4": ("IMAGE",), "image5": ("IMAGE",), "image6": ("IMAGE",),
+            "image7": ("IMAGE",), "image8": ("IMAGE",), "image9": ("IMAGE",),
+            "reference_video": ("IMAGE",),
+            "reference_video_fps": ("FLOAT", {"default": 24.0, "min": 0.001, "max": 240.0}),
+            "reference_video_audio": ("AUDIO",),
+            "reference_audio": ("AUDIO",),
+        }}
 
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("optimized_prompt", "validation_report")
@@ -130,14 +138,24 @@ class H3OfficialSkillQwenLocal:
     DESCRIPTION = "ComfyUI-managed local Qwen GGUF: automatically starts an offline runtime, applies the complete official H3 skill and closes the runtime to release VRAM. No Ollama, LM Studio or cloud service required."
 
     def optimize(self, skill, description, gguf_model, seed, temperature, max_tokens,
-                 context_length, gpu_layers, image1=None, image2=None):
+                 context_length, gpu_layers, image1=None, image2=None, image3=None,
+                 image4=None, image5=None, image6=None, image7=None, image8=None,
+                 image9=None, reference_video=None, reference_video_fps=24.0,
+                 reference_video_audio=None, reference_audio=None):
         if not description.strip():
             raise ValueError("请填写原始创作描述。")
-        vision = image1 is not None or image2 is not None
+        images = (image1, image2, image3, image4, image5, image6, image7, image8, image9)
+        vision = any(image is not None for image in images) or reference_video is not None
         with managed_server(gguf_model, vision, context_length, gpu_layers) as (endpoint, log_path):
             prompt, report = H3OfficialSkillOptimize().optimize(
                 skill, description, "OpenAI-compatible local", endpoint, "h3-qwen-local",
-                seed, temperature, max_tokens, 600, image1, image2,
+                seed, temperature, max_tokens, 900,
+                image1=image1, image2=image2, image3=image3, image4=image4,
+                image5=image5, image6=image6, image7=image7, image8=image8,
+                image9=image9, reference_video=reference_video,
+                reference_video_fps=reference_video_fps,
+                reference_video_audio=reference_video_audio,
+                reference_audio=reference_audio,
                 request_options={"top_p": 0.8, "top_k": 20, "min_p": 0.0,
                                  "presence_penalty": 1.5, "repeat_penalty": 1.0,
                                  "chat_template_kwargs": {"enable_thinking": False}})

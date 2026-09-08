@@ -1,65 +1,175 @@
 {
-  "last_node_id": 145,
-  "last_link_id": 28,
+  "last_node_id": 154,
+  "last_link_id": 17,
   "nodes": [
     {
       "id": 137,
-      "type": "LoadImage",
+      "type": "H3OptionalReferenceImages",
       "pos": [
         30,
-        640
+        20
       ],
       "size": [
-        380,
-        420
+        650,
+        500
       ],
       "flags": {},
-      "order": 14,
+      "order": 0,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "图像",
-          "name": "image",
+          "name": "image1",
           "type": "COMBO",
+          "link": null,
           "widget": {
-            "name": "image"
-          },
-          "link": null
+            "name": "image1"
+          }
         },
         {
-          "localized_name": "选择文件上传",
-          "name": "upload",
-          "type": "IMAGEUPLOAD",
+          "name": "image2",
+          "type": "COMBO",
+          "link": null,
           "widget": {
-            "name": "upload"
-          },
-          "link": null
+            "name": "image2"
+          }
+        },
+        {
+          "name": "image3",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image3"
+          }
+        },
+        {
+          "name": "image4",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image4"
+          }
+        },
+        {
+          "name": "image5",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image5"
+          }
+        },
+        {
+          "name": "image6",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image6"
+          }
+        },
+        {
+          "name": "image7",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image7"
+          }
+        },
+        {
+          "name": "image8",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image8"
+          }
+        },
+        {
+          "name": "image9",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image9"
+          }
         }
       ],
       "outputs": [
         {
-          "localized_name": "图像",
-          "name": "IMAGE",
+          "name": "image1",
           "type": "IMAGE",
           "links": [
-            3
+            5
           ]
         },
         {
-          "localized_name": "遮罩",
-          "name": "MASK",
-          "type": "MASK",
-          "links": []
+          "name": "image2",
+          "type": "IMAGE",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "image8",
+          "type": "IMAGE",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "image9",
+          "type": "IMAGE",
+          "links": [
+            13
+          ]
         }
       ],
-      "properties": {
-        "Node name for S&R": "LoadImage"
-      },
       "widgets_values": [
         "example.png",
-        "image"
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)"
       ],
-      "title": "参考图 1 · 同时送给优化器和 H3（请替换）"
+      "properties": {
+        "Node name for S&R": "H3OptionalReferenceImages"
+      },
+      "title": "最多 9 张参考图（从 image1 连续选择）"
     },
     {
       "id": 138,
@@ -73,7 +183,7 @@
         350
       ],
       "flags": {},
-      "order": 15,
+      "order": 1,
       "mode": 0,
       "inputs": [
         {
@@ -118,7 +228,7 @@
         150
       ],
       "flags": {},
-      "order": 17,
+      "order": 2,
       "mode": 0,
       "inputs": [
         {
@@ -170,15 +280,15 @@
       "id": 142,
       "type": "H3OfficialSkillQwenLocal",
       "pos": [
-        480,
-        40
+        760,
+        20
       ],
       "size": [
-        480,
-        440
+        560,
+        700
       ],
       "flags": {},
-      "order": 18,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -245,12 +355,67 @@
         {
           "name": "image1",
           "type": "IMAGE",
-          "link": 3
+          "link": 5
         },
         {
           "name": "image2",
           "type": "IMAGE",
-          "link": null
+          "link": 6
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": 10
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "name": "image8",
+          "type": "IMAGE",
+          "link": 12
+        },
+        {
+          "name": "image9",
+          "type": "IMAGE",
+          "link": 13
+        },
+        {
+          "name": "reference_video",
+          "type": "IMAGE",
+          "link": 14
+        },
+        {
+          "name": "reference_video_fps",
+          "type": "FLOAT",
+          "link": 15
+        },
+        {
+          "name": "reference_video_audio",
+          "type": "AUDIO",
+          "link": 16
+        },
+        {
+          "name": "reference_audio",
+          "type": "AUDIO",
+          "link": 17
         }
       ],
       "outputs": [
@@ -258,14 +423,14 @@
           "name": "optimized_prompt",
           "type": "STRING",
           "links": [
-            4
+            3
           ]
         },
         {
           "name": "validation_report",
           "type": "STRING",
           "links": [
-            5
+            4
           ]
         }
       ],
@@ -276,7 +441,7 @@
         "fixed",
         0.7,
         4096,
-        16384,
+        32768,
         99
       ],
       "properties": {
@@ -296,13 +461,13 @@
         600
       ],
       "flags": {},
-      "order": 19,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 4
+          "link": 3
         }
       ],
       "outputs": [
@@ -330,13 +495,13 @@
         240
       ],
       "flags": {},
-      "order": 20,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 5
+          "link": 4
         }
       ],
       "outputs": [
@@ -364,17 +529,88 @@
         300
       ],
       "flags": {},
-      "order": 21,
+      "order": 6,
       "mode": 0,
       "inputs": [],
       "outputs": [],
       "widgets_values": [
-        "# Qwen 本地 + H3 官方 Skill\n运行时自动加载 Qwen3.8-27B Q4 GGUF 与视觉投影器；完成官方格式改写和校验后，关闭 Qwen 进程释放显存，再由 H3 生成。无需 API 密钥、Ollama 或 LM Studio。\n\n修改原始描述和参考图即可。默认约 5 秒 / 124 帧 / 24fps。先用 H3_QwenLocal_PromptOnly 检查改写，再运行 H3_QwenLocal_Ref2VA。\n\n如有两张参考图，分别同时连接优化器与 H3，并保持编号一致。本模板不分析视频/音频参考。\n\n24GB 显存设置：Q4、16384 上下文、Qwen 全层 GPU；若加载失败，先关闭其他占显存程序，必要时减少 gpu_layers。首次加载可能较慢。结构校验不保证语义质量。"
+        "# 9图 + 视频 + 音频 · 提示词预检\n参考图从 image1 开始连续选择，未使用项保持 (none)，不需要手工接线。\n可选视频会转换为24fps并抽取最多8帧供Qwen分析，视频原声与独立音频会按编号写入提示词。\nQwen无法直接听音频，请在创意描述中说明声音内容和用途。\n检查优化结果后，在完整 Ref2VA 工作流使用相同素材。"
       ],
       "properties": {
         "Node name for S&R": "MarkdownNote"
       },
       "title": "使用前必读"
+    },
+    {
+      "id": 154,
+      "type": "H3OptionalReferenceMedia",
+      "pos": [
+        30,
+        1120
+      ],
+      "size": [
+        650,
+        190
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_video",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "reference_video"
+          }
+        },
+        {
+          "name": "reference_audio",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "reference_audio"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video_frames",
+          "type": "IMAGE",
+          "links": [
+            14
+          ]
+        },
+        {
+          "name": "video_soundtrack",
+          "type": "AUDIO",
+          "links": [
+            16
+          ]
+        },
+        {
+          "name": "video_fps",
+          "type": "FLOAT",
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "standalone_audio",
+          "type": "AUDIO",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "widgets_values": [
+        "(none)",
+        "(none)"
+      ],
+      "properties": {
+        "Node name for S&R": "H3OptionalReferenceMedia"
+      },
+      "title": "可选参考视频 + 独立参考音频（不使用请选择 none）"
     }
   ],
   "links": [
@@ -396,14 +632,6 @@
     ],
     [
       3,
-      137,
-      0,
-      142,
-      8,
-      "IMAGE"
-    ],
-    [
-      4,
       142,
       0,
       143,
@@ -411,22 +639,140 @@
       "STRING"
     ],
     [
-      5,
+      4,
       142,
       1,
       144,
       0,
       "STRING"
+    ],
+    [
+      5,
+      137,
+      0,
+      142,
+      8,
+      "IMAGE"
+    ],
+    [
+      6,
+      137,
+      1,
+      142,
+      9,
+      "IMAGE"
+    ],
+    [
+      7,
+      137,
+      2,
+      142,
+      10,
+      "IMAGE"
+    ],
+    [
+      8,
+      137,
+      3,
+      142,
+      11,
+      "IMAGE"
+    ],
+    [
+      9,
+      137,
+      4,
+      142,
+      12,
+      "IMAGE"
+    ],
+    [
+      10,
+      137,
+      5,
+      142,
+      13,
+      "IMAGE"
+    ],
+    [
+      11,
+      137,
+      6,
+      142,
+      14,
+      "IMAGE"
+    ],
+    [
+      12,
+      137,
+      7,
+      142,
+      15,
+      "IMAGE"
+    ],
+    [
+      13,
+      137,
+      8,
+      142,
+      16,
+      "IMAGE"
+    ],
+    [
+      14,
+      154,
+      0,
+      142,
+      17,
+      "IMAGE"
+    ],
+    [
+      15,
+      154,
+      2,
+      142,
+      18,
+      "FLOAT"
+    ],
+    [
+      16,
+      154,
+      1,
+      142,
+      19,
+      "AUDIO"
+    ],
+    [
+      17,
+      154,
+      3,
+      142,
+      20,
+      "AUDIO"
     ]
   ],
-  "groups": [],
+  "groups": [
+    {
+      "id": 10,
+      "title": "可选多参考素材",
+      "bounding": [
+        10,
+        0,
+        1370,
+        1320
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.5,
+      "scale": 0.46,
       "offset": [
-        790,
-        180
+        720,
+        170
       ]
     }
   },

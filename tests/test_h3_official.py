@@ -8,6 +8,8 @@ import unittest
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from unittest.mock import patch
 
+import torch
+
 PLUGIN = Path(__file__).resolve().parents[1]
 ROOT = Path(os.environ.get("COMFYUI_ROOT", PLUGIN.parents[1])).resolve()
 sys.path.insert(0, str(ROOT))
@@ -17,6 +19,7 @@ spec.loader.exec_module(h3)
 
 BASE = "integrated_multimodal_description: [Shot 1] A cat walks through a garden.\n\noverall_soundscape: Soft footsteps.\n\nnon_diegetic_music: N/A"
 REF = "subject_definitions: <Subject 1> is the cat from <Picture 1>.\n\nsummary: [reference generation] <Subject 1> walks.\n\nretention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - appearance.\n\ndetailed_description: Natural daylight. [Shot 1] <Subject 1> walks through a garden.\n\noverall_soundscape: Soft footsteps.\n\nnon_diegetic_music: N/A"
+REF_MEDIA = "subject_definitions: <Subject 1> is the cat from <Picture 1>, also visible in <Video 1>.\n\nsummary: [reference generation] <Subject 1> walks.\n\nretention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - appearance and motion.\n\ndetailed_description: Natural daylight. [Shot 1] <Subject 1> walks through a garden while following the rhythm of <Audio 1>.\n\noverall_soundscape: Preserve the character of <Audio 2>.\n\nnon_diegetic_music: N/A"
 
 
 class Tests(unittest.TestCase):
@@ -36,6 +39,29 @@ class Tests(unittest.TestCase):
     def test_valid_prompt(self):
         h3.check_prompt(BASE, "T2VA", 5.0, 0)
         h3.check_prompt(REF, "Ref2VA", 5.0, 1)
+        h3.check_prompt(REF_MEDIA, "Ref2VA", 5.0, 1, 1, 2)
+
+    def test_nine_images_and_media_helpers(self):
+        pictures = " ".join(f"<Picture {index}>" for index in range(1, 10))
+        prompt = REF.replace("<Picture 1>", pictures)
+        h3.check_prompt(prompt, "Ref2VA", 5.0, 9)
+        video = torch.zeros((12, 8, 8, 3))
+        frames = h3.encode_video_frames(video, fps=6, max_frames=8)
+        self.assertEqual(len(frames), 8)
+        self.assertEqual(frames[0][1], 0)
+        self.assertAlmostEqual(frames[-1][1], 11 / 6)
+        audio = {"waveform": torch.zeros((1, 2, 48000)), "sample_rate": 48000}
+        self.assertEqual(h3.audio_metadata(audio), "1.000s, 48000 Hz, 2 channel(s)")
+        self.assertEqual(h3.H3OptionalReferenceMedia().load("(none)", "(none)"),
+                         (None, None, 24.0, None))
+        empty_images = {f"image{index}": "(none)" for index in range(1, 10)}
+        self.assertIs(h3.H3OptionalReferenceImages.VALIDATE_INPUTS(**empty_images), True)
+        self.assertEqual(h3.H3OptionalReferenceImages().load(**empty_images), (None,) * 9)
+
+    def test_connected_media_must_be_referenced(self):
+        with self.assertRaises(ValueError):
+            h3.check_prompt(REF_MEDIA.replace("<Audio 2>", "ambient sound"),
+                            "Ref2VA", 5.0, 1, 1, 2)
 
     def test_invalid_prompts(self):
         cases = [BASE.replace("overall_soundscape:", "bad_field:"),
@@ -128,6 +154,13 @@ class Tests(unittest.TestCase):
                 self.assertEqual(source("prompt"), 142)
                 self.assertEqual(source("length"), 141)
                 self.assertEqual(source("ref_images.ref_image_0"), 137)
+                self.assertEqual(source("ref_images.ref_image_8"), 137)
+                self.assertEqual(source("ref_videos.ref_video_0"), 154)
+                self.assertEqual(source("ref_video_audios.ref_video_audio_0"), 154)
+                self.assertEqual(source("ref_audios.ref_audio_0"), 154)
+                self.assertEqual(nodes[155]["type"], "LoraLoaderModelOnly")
+                self.assertEqual(nodes[156]["type"], "MiniMaxH3MemoryEfficientSageAttentionPatch")
+                self.assertNotIn("PathchSageAttentionKJ", {node["type"] for node in nodes.values()})
 
 
 if __name__ == "__main__":

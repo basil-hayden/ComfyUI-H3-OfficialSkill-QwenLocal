@@ -20,7 +20,13 @@ qwen = sys.modules["h3qwen_test.managed_qwen"]
 class Tests(unittest.TestCase):
     def test_registered(self):
         self.assertIn("H3OfficialSkillQwenLocal", package.NODE_CLASS_MAPPINGS)
+        self.assertIn("H3OptionalReferenceImages", package.NODE_CLASS_MAPPINGS)
+        self.assertIn("H3OptionalReferenceMedia", package.NODE_CLASS_MAPPINGS)
         self.assertIn(qwen.DEFAULT_MODEL, qwen.model_files())
+        inputs = qwen.H3OfficialSkillQwenLocal.INPUT_TYPES()
+        self.assertIn("image9", inputs["optional"])
+        self.assertIn("reference_video", inputs["optional"])
+        self.assertEqual(inputs["required"]["context_length"][1]["default"], 32768)
 
     def test_path_escape_rejected(self):
         with self.assertRaises(ValueError):

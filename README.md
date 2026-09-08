@@ -2,9 +2,9 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-Two ComfyUI workflows that turn a Chinese creative brief and one or two reference
-images into a MiniMax H3 prompt using a fully local Qwen3.8-27B vision-language
-model.
+Two ComfyUI workflows that turn a Chinese creative brief, up to nine reference
+images, and optional reference video/audio into a MiniMax H3 prompt using a fully
+local Qwen3.8-27B vision-language model.
 
 The node loads the pinned MiniMax H3 prompt-writing skill, starts an offline
 llama.cpp server, asks Qwen to inspect the image and rewrite the brief, validates
@@ -19,7 +19,8 @@ binaries are downloaded during installation and are never committed here.
 - workflows/H3_QwenLocal_PromptOnly.json: inspect the optimized prompt and
   validation report without rendering video.
 - workflows/H3_QwenLocal_Ref2VA.json: the optimizer connected directly to a
-  MiniMax H3 Ref2VA video/audio generation chain.
+  MiniMax H3 Ref2VA generation chain with the 8-step Turbo LoRA and H3-specific
+  SageAttention patch enabled.
 
 The full workflow is automated; its preview node is not an approval gate.
 
@@ -42,9 +43,12 @@ runtime installer is Windows/NVIDIA only.
 ## Prerequisites
 
 1. A current ComfyUI installation with MiniMax H3 nodes.
-2. Git and PowerShell 7 or newer.
-3. About 18 GB free space for Qwen, plus the separate H3 models.
-4. These H3 files for the full Ref2VA workflow:
+2. ComfyUI-KJNodes installed or updated through ComfyUI Manager.
+   Acceleration also requires SageAttention compatible with your GPU and PyTorch;
+   the installer checks its import but does not replace an existing installation.
+3. Git and PowerShell 7 or newer.
+4. About 18 GB for Qwen and 2 GB for the Turbo LoRA, plus the H3 models.
+5. These files for the full Ref2VA workflow:
 
 | ComfyUI folder | Filename |
 | --- | --- |
@@ -52,12 +56,14 @@ runtime installer is Windows/NVIDIA only.
 | models/text_encoders | qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors |
 | models/vae | minimax_h3_video_vae_fp16.safetensors |
 | models/vae | minimax_h3_audio_vae_fp32.safetensors |
+| models/loras | minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors |
 
 The workflow contains ComfyUI model metadata. If a file is missing, use
 ComfyUI's model downloader/Manager or follow the
 [Comfy-Org MiniMax-H3 repository](https://huggingface.co/Comfy-Org/MiniMax-H3).
-This installer downloads Qwen, the official skill and llama.cpp; it does not
-download the much larger H3 weights.
+This installer downloads Qwen, the official skill, llama.cpp and the Turbo LoRA.
+For portable Python 3.13 it also installs pinned triton-windows support. It does
+not download the much larger H3 base weights.
 
 ## One-command Windows installation
 
@@ -70,9 +76,9 @@ pwsh -ExecutionPolicy Bypass -File .\install_windows.ps1
 ~~~
 
 The installer verifies its location, downloads the three official H3 skill
-files, downloads and extracts the pinned llama.cpp runtime, downloads both Qwen
-GGUF files in resumable 32 MiB ranges, verifies all SHA256 hashes, and copies the
-two workflows into ComfyUI/user/default/workflows.
+files, downloads and extracts the pinned llama.cpp runtime, installs and verifies
+the Sage runtime, downloads the Turbo LoRA and both Qwen GGUF files in resumable
+32 MiB ranges, verifies SHA256 hashes, and copies both workflows.
 
 Interrupted model downloads resume when the command is run again. Temporary
 chunks live under the ignored download-cache directory and are removed after
@@ -84,21 +90,31 @@ Useful switches:
 pwsh -File .\install_windows.ps1 -SkipModel -SkipRuntime
 pwsh -File .\install_windows.ps1 -ParallelDownloads 4
 pwsh -File .\install_windows.ps1 -SkipWorkflowCopy
+pwsh -File .\install_windows.ps1 -SkipAcceleration
 ~~~
 
 After installation, restart ComfyUI and open H3_QwenLocal_PromptOnly first.
 
 ## Usage
 
-1. Replace the example image.
-2. Enter the creative description in Chinese or English.
-3. Run H3_QwenLocal_PromptOnly and review both text outputs.
-4. State important identity details explicitly in the creative description.
-5. Use H3_QwenLocal_Ref2VA with the same image and brief.
+1. Upload or select consecutive pictures from image1 through image9 in the image node; leave unused slots at `(none)`. All connections are prewired.
+2. Optionally upload one video and one standalone audio file in the media node; the video's soundtrack is passed through automatically.
+3. Enter the creative description in Chinese or English.
+4. Run H3_QwenLocal_PromptOnly and review both text outputs.
+5. State important identity details explicitly in the creative description.
+6. Use H3_QwenLocal_Ref2VA with the same references and brief.
 
-For two images, connect both to the optimizer and H3 in the same order. The node
-does not analyze reference video or audio. H3 may still generate dialogue,
-ambience and music.
+Images must be selected consecutively and are automatically sent to the optimizer
+and H3 in the same order. Qwen inspects every image plus up to eight uniformly sampled video
+frames; H3 receives the video frame batch resampled to 24 fps. The GGUF cannot listen to audio,
+so Qwen only receives objective duration/sample-rate/channel metadata and the
+creative brief, while H3 receives the actual waveform. The workflow supports one
+video, its soundtrack, and one additional standalone audio reference.
+
+The acceleration path is base model → 8-step Turbo LoRA → H3-specific
+SageAttention. The redundant generic `PathchSageAttentionKJ` node is deliberately
+absent. Fully restart ComfyUI after installation, especially after a previous
+`No module named 'triton'` error.
 
 The official skill expects English section bodies; user-provided dialogue,
 lyrics and visible text remain in their original language. Five seconds is
@@ -145,7 +161,7 @@ $env:COMFYUI_ROOT = 'C:\path\to\ComfyUI'
 & "$env:COMFYUI_ROOT\..\python_embeded\python.exe" -s .\tests\test_qwen_managed.py
 ~~~
 
-The tested release passed 12 automated tests and native ComfyUI validation for
+The tested release passed 14 automated tests and native ComfyUI validation for
 the workflows. The real Qwen optimizer was exercised with an image. A complete
 H3 video render has not been benchmarked by this project.
 

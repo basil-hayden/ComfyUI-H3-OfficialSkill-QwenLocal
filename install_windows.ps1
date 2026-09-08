@@ -1,6 +1,7 @@
 param(
     [switch]$SkipModel,
     [switch]$SkipRuntime,
+    [switch]$SkipAcceleration,
     [switch]$SkipWorkflowCopy,
     [int]$ParallelDownloads = 8
 )
@@ -17,11 +18,12 @@ if (-not (Test-Path (Join-Path $comfyRoot 'folder_paths.py'))) {
     throw "This repository must be cloned under ComfyUI/custom_nodes. Detected root: $comfyRoot"
 }
 $modelDir = Join-Path $comfyRoot 'models\LLM\Qwen3.8-27B-GGUF'
+$loraDir = Join-Path $comfyRoot 'models\loras'
 $cacheDir = Join-Path $pluginDir 'download-cache'
 $runtimeDir = Join-Path $pluginDir 'runtime\llama-b10621'
 $skillDir = Join-Path $pluginDir 'official\h3-prompt-writing'
 $workflowDir = Join-Path $comfyRoot 'user\default\workflows'
-New-Item -ItemType Directory -Force -Path $modelDir,$cacheDir,$runtimeDir,(Join-Path $skillDir 'references') | Out-Null
+New-Item -ItemType Directory -Force -Path $modelDir,$loraDir,$cacheDir,$runtimeDir,(Join-Path $skillDir 'references') | Out-Null
 
 function Assert-Hash([string]$Path, [string]$Expected) {
     $actual = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -105,6 +107,40 @@ if (-not $SkipModel) {
     $modelBase = 'https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/resolve/4ca720788d1e01f1bff70c033e0d0028fd02e502'
     Get-RangedVerifiedFile "$modelBase/mmproj-F16.gguf?download=true" (Join-Path $modelDir 'mmproj-F16.gguf') 927607488 'cbb841a9ee0636b2ec172f5bb8df2ea8dfeb01e90fe7c6126581d662a0b4e43e'
     Get-RangedVerifiedFile "$modelBase/Qwen3.8-27B-UD-Q4_K_M.gguf?download=true" (Join-Path $modelDir 'Qwen3.8-27B-UD-Q4_K_M.gguf') 16464440224 '322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482'
+}
+
+if (-not $SkipAcceleration) {
+    $kjNodes = Join-Path $comfyRoot 'custom_nodes\comfyui-kjnodes\nodes\ltxv_nodes.py'
+    if (-not (Test-Path -LiteralPath $kjNodes)) {
+        throw 'The accelerated workflow requires ComfyUI-KJNodes. Install or update KJNodes with ComfyUI Manager, then run this installer again.'
+    }
+
+    $portableRoot = Split-Path $comfyRoot -Parent
+    $python = Join-Path $portableRoot 'python_embeded\python.exe'
+    if (-not (Test-Path -LiteralPath $python)) {
+        throw "Embedded Python not found: $python. Use -SkipAcceleration and install SageAttention for your Python environment manually."
+    }
+    $pythonVersion = (& $python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")').Trim()
+    if ($pythonVersion -ne '3.13') {
+        throw "Automatic Sage setup is pinned for ComfyUI Portable Python 3.13, detected $pythonVersion. Use -SkipAcceleration and follow the README manual setup."
+    }
+    $pythonLibs = Join-Path (Split-Path $python -Parent) 'libs'
+    if (-not (Test-Path -LiteralPath $pythonLibs)) {
+        $pythonDevZip = Join-Path $cacheDir 'python_3.13.2_include_libs.zip'
+        Get-VerifiedFile 'https://github.com/woct0rdho/triton-windows/releases/download/v3.0.0-windows.post1/python_3.13.2_include_libs.zip' $pythonDevZip 'e3e8c3abb17ea8de1cd2cd264ad15aae3de5eb7dc61ab37cb1a3d07f9c86238d'
+        $pythonDevTemp = Join-Path $cacheDir 'python_3.13.2_include_libs'
+        New-Item -ItemType Directory -Force -Path $pythonDevTemp | Out-Null
+        Expand-Archive -LiteralPath $pythonDevZip -DestinationPath $pythonDevTemp -Force
+        Copy-Item -LiteralPath (Join-Path $pythonDevTemp 'libs') -Destination (Split-Path $python -Parent) -Recurse -Force
+        Remove-Item -LiteralPath $pythonDevTemp -Recurse -Force
+    }
+    & $python -m pip install --upgrade 'triton-windows==3.7.1.post27'
+    if ($LASTEXITCODE -ne 0) { throw 'Failed to install the pinned triton-windows package.' }
+    & $python -c 'import triton, sageattention; print("Sage runtime ready: triton", triton.__version__)'
+    if ($LASTEXITCODE -ne 0) { throw 'SageAttention validation failed. Update KJNodes and SageAttention, then retry.' }
+
+    $lora = Join-Path $loraDir 'minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors'
+    Get-RangedVerifiedFile 'https://huggingface.co/lightx2v/Minimax-h3-Turbo/resolve/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors?download=true' $lora 1956193000 '2339acdf19bfe123f46b971ea35d367a84adb85de43627e1eceafa5a5b2b111e'
 }
 
 if (-not $SkipWorkflowCopy) {

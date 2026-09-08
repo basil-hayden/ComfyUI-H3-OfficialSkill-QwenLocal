@@ -12,5 +12,15 @@
     "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b10621",
     "binary_zip_sha256": "23549ccc00b6a18d74348e95d4789f7e96c9efb11cf6e3f1b185baef34d7449f",
     "cudart_zip_sha256": "1462a050eb4c684921ba51dcc4cc488a036674c3e73e9945ee705b854808d03e"
+  },
+  "acceleration": {
+    "triton_windows": "3.7.1.post27",
+    "python_3_13_dev_zip_sha256": "e3e8c3abb17ea8de1cd2cd264ad15aae3de5eb7dc61ab37cb1a3d07f9c86238d",
+    "turbo_lora": {
+      "source": "https://huggingface.co/lightx2v/Minimax-h3-Turbo",
+      "filename": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "bytes": 1956193000,
+      "expected_sha256": "2339acdf19bfe123f46b971ea35d367a84adb85de43627e1eceafa5a5b2b111e"
+    }
   }
 }

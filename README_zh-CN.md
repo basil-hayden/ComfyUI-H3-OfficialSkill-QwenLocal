@@ -2,7 +2,8 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-这是两个用于 ComfyUI 的工作流：输入中文创意描述和一至两张参考图，
+这是两个用于 ComfyUI 的工作流：输入中文创意描述、最多九张参考图，
+以及可选的参考视频、视频原声和独立参考音频，
 由本地 Qwen3.8-27B 视觉语言模型自动生成符合 MiniMax H3 官方规则的提示词。
 
 自定义节点会自动完成以下流程：
@@ -22,7 +23,7 @@ GitHub，而是在安装时从固定上游版本下载并校验。
 - workflows/H3_QwenLocal_PromptOnly.json：仅生成并检查优化后的提示词，
   不渲染视频，建议第一次先使用这个版本。
 - workflows/H3_QwenLocal_Ref2VA.json：提示词优化器直接连接 MiniMax H3
-  Ref2VA 视频和音频生成链。
+  Ref2VA 视频和音频生成链，并启用 8 步 Turbo LoRA 与 H3 专用 SageAttention。
 
 完整工作流会自动继续生成视频，提示词预览节点不是人工审批关卡。
 
@@ -46,9 +47,11 @@ GitHub，而是在安装时从固定上游版本下载并校验。
 ## 前置条件
 
 1. 已安装支持 MiniMax H3 节点的较新版本 ComfyUI。
-2. 已安装 Git 和 PowerShell 7 或更高版本。
-3. Qwen 需要约 18GB 空间，H3 模型需要另外计算空间。
-4. 完整 Ref2VA 工作流需要以下文件：
+2. 已通过 ComfyUI Manager 安装或更新 ComfyUI-KJNodes。
+   加速版还需与 GPU、PyTorch 匹配的 SageAttention；安装脚本会验证导入，但不会替换现有 SageAttention。
+3. 已安装 Git 和 PowerShell 7 或更高版本。
+4. Qwen 需要约 18GB 空间，Turbo LoRA 约 2GB，H3 模型需要另外计算空间。
+5. 完整 Ref2VA 工作流需要以下文件：
 
 | ComfyUI 目录 | 文件名 |
 | --- | --- |
@@ -56,13 +59,15 @@ GitHub，而是在安装时从固定上游版本下载并校验。
 | models/text_encoders | qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors |
 | models/vae | minimax_h3_video_vae_fp16.safetensors |
 | models/vae | minimax_h3_audio_vae_fp32.safetensors |
+| models/loras | minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors |
 
 工作流 JSON 中包含 ComfyUI 模型下载信息。缺少文件时，可以使用 ComfyUI
 的模型下载功能或 Manager，也可以查看
 [Comfy-Org MiniMax-H3 模型仓库](https://huggingface.co/Comfy-Org/MiniMax-H3)。
 
-本项目的安装脚本只下载 Qwen、官方 Skill 和 llama.cpp，不会自动下载体积
-更大的 H3 模型。
+本项目的安装脚本会下载 Qwen、官方 Skill、llama.cpp、Turbo LoRA，并为
+Python 3.13 便携版配置固定版本的 triton-windows；不会自动下载体积更大的
+H3 基础模型。
 
 ## Windows 一键安装
 
@@ -79,6 +84,8 @@ pwsh -ExecutionPolicy Bypass -File .\install_windows.ps1
 - 确认仓库位于 ComfyUI/custom_nodes 目录。
 - 下载固定提交版本的三个 H3 官方 Skill 文件。
 - 下载并解压固定版本的 llama.cpp CUDA 运行库。
+- 安装 triton-windows，并检查 SageAttention 能否导入。
+- 下载并校验 8 步 Turbo LoRA。
 - 将两个 Qwen GGUF 文件分成可续传的 32MiB 数据块下载。
 - 对每个文件执行 SHA256 校验。
 - 将两个工作流复制到 ComfyUI/user/default/workflows。
@@ -90,27 +97,38 @@ download-cache 目录，校验成功后会自动删除。
 
 ~~~powershell
 # 只安装官方规则和工作流
-pwsh -File .\install_windows.ps1 -SkipModel -SkipRuntime
+pwsh -File .\install_windows.ps1 -SkipModel -SkipRuntime -SkipAcceleration
 
 # 网络不稳定时减少并行下载数
 pwsh -File .\install_windows.ps1 -ParallelDownloads 4
 
 # 不把工作流复制到用户目录
 pwsh -File .\install_windows.ps1 -SkipWorkflowCopy
+
+# 跳过 Sage/Turbo 加速安装（工作流中的加速节点需要自行处理）
+pwsh -File .\install_windows.ps1 -SkipAcceleration
 ~~~
 
 安装完成后重启 ComfyUI，先打开 H3_QwenLocal_PromptOnly。
 
 ## 使用方法
 
-1. 替换示例参考图。
-2. 用中文或英文填写创意描述。
-3. 运行 H3_QwenLocal_PromptOnly，检查提示词和验证报告两个输出。
-4. 在创意描述中明确写出角色身份、服装和其他关键外观细节。
-5. 确认内容后，用相同图片和描述运行 H3_QwenLocal_Ref2VA。
+1. 在“最多 9 张参考图”节点，从 image1 开始连续上传或选择图片；未使用项保持 `(none)`，连线已预接好。
+2. 在“可选参考视频 / 音频”节点上传一个视频，并可另选一个独立音频。视频原声会自动传给 H3。
+3. 用中文或英文填写创意描述。
+4. 运行 H3_QwenLocal_PromptOnly，检查提示词和验证报告两个输出。
+5. 在创意描述中明确写出角色身份、服装和其他关键外观细节。
+6. 确认内容后，用相同素材和描述运行 H3_QwenLocal_Ref2VA。
 
-使用两张图片时，必须将两张图以相同顺序同时连接到优化器和 H3。本节点
-不会自动分析参考视频或参考音频，但 H3 仍然可以生成对白、环境声和配乐。
+图片输入必须从 image1 开始连续选择，会自动以相同顺序送入优化器和 H3。
+Qwen 会分析全部图片和从参考视频中均匀抽取的最多 8 帧；完整视频帧仍会送入
+H3（视频自动转换为 24fps）。Qwen3.8 GGUF 不能直接听音频，因此它只读取时长、采样率和声道数，并结合
+创意描述编写音频用途；真实波形会直接送入 H3。视频最多 1 个、独立音频最多
+1 个，另外会保留该视频自带的音轨。
+
+加速链为“基础模型 → 8 步 Turbo LoRA → MiniMax H3 专用 SageAttention”。
+工作流没有使用会重复打补丁的通用 `PathchSageAttentionKJ` 节点。若旧进程曾
+出现 `No module named 'triton'`，安装完成后必须彻底重启 ComfyUI。
 
 官方 Skill 要求各字段正文使用英文；用户指定的对白、歌词和画面文字会
 保留原语言。输入 5 秒会按照 H3 的帧网格对齐为 124 帧，在 24fps 下实际
@@ -163,7 +181,7 @@ $env:COMFYUI_ROOT = 'C:\path\to\ComfyUI'
 & "$env:COMFYUI_ROOT\..\python_embeded\python.exe" -s .\tests\test_qwen_managed.py
 ~~~
 
-当前版本通过了 12 项自动化测试和 ComfyUI 工作流原生校验，并使用真实
+当前版本通过了 14 项自动化测试和 ComfyUI 工作流原生校验，并使用真实
 图片完成过 Qwen 优化测试。本项目尚未对完整 H3 视频渲染进行基准测试。
 
 ## 来源与许可

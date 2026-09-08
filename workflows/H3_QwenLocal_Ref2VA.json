@@ -1,6 +1,6 @@
 {
-  "last_node_id": 145,
-  "last_link_id": 28,
+  "last_node_id": 156,
+  "last_link_id": 53,
   "nodes": [
     {
       "id": 92,
@@ -21,7 +21,7 @@
           "localized_name": "视频",
           "name": "video",
           "type": "VIDEO",
-          "link": 28
+          "link": 24
         },
         {
           "localized_name": "文件名前缀",
@@ -61,7 +61,7 @@
       ],
       "properties": {},
       "widgets_values": [
-        "video/H3_QwenLocal",
+        "video/H3_QwenLocal_MultiRef_Accelerated",
         "auto",
         "auto"
       ]
@@ -116,7 +116,7 @@
           "name": "width",
           "type": "INT",
           "links": [
-            12
+            10
           ]
         },
         {
@@ -124,7 +124,7 @@
           "name": "height",
           "type": "INT",
           "links": [
-            13
+            11
           ]
         }
       ],
@@ -171,8 +171,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            10,
-            24
+            8,
+            20
           ]
         }
       ],
@@ -221,8 +221,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            11,
-            25
+            9,
+            21
           ]
         }
       ],
@@ -261,13 +261,13 @@
           "localized_name": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 23
+          "link": 19
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 25
+          "link": 21
         }
       ],
       "outputs": [
@@ -276,7 +276,7 @@
           "name": "AUDIO",
           "type": "AUDIO",
           "links": [
-            27
+            23
           ]
         }
       ],
@@ -306,13 +306,13 @@
           "localized_name": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 22
+          "link": 18
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 24
+          "link": 20
         }
       ],
       "outputs": [
@@ -321,7 +321,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            26
+            22
           ]
         }
       ],
@@ -361,7 +361,7 @@
           "name": "SAMPLER",
           "type": "SAMPLER",
           "links": [
-            20
+            16
           ]
         }
       ],
@@ -391,7 +391,7 @@
           "localized_name": "模型",
           "name": "model",
           "type": "MODEL",
-          "link": 15
+          "link": 53
         },
         {
           "localized_name": "调度器",
@@ -427,7 +427,7 @@
           "name": "SIGMAS",
           "type": "SIGMAS",
           "links": [
-            21
+            17
           ]
         }
       ],
@@ -436,8 +436,8 @@
       },
       "widgets_values": [
         "simple",
-        20,
-        1
+        8,
+        1.0
       ]
     },
     {
@@ -459,31 +459,31 @@
           "localized_name": "噪波",
           "name": "noise",
           "type": "NOISE",
-          "link": 18
+          "link": 14
         },
         {
           "localized_name": "引导器",
           "name": "guider",
           "type": "GUIDER",
-          "link": 19
+          "link": 15
         },
         {
           "localized_name": "采样器",
           "name": "sampler",
           "type": "SAMPLER",
-          "link": 20
+          "link": 16
         },
         {
           "localized_name": "西格玛",
           "name": "sigmas",
           "type": "SIGMAS",
-          "link": 21
+          "link": 17
         },
         {
           "localized_name": "Latent图像",
           "name": "latent_image",
           "type": "LATENT",
-          "link": 17
+          "link": 13
         }
       ],
       "outputs": [
@@ -492,8 +492,8 @@
           "name": "output",
           "type": "LATENT",
           "links": [
-            22,
-            23
+            18,
+            19
           ]
         },
         {
@@ -527,13 +527,13 @@
           "localized_name": "模型",
           "name": "model",
           "type": "MODEL",
-          "link": 14
+          "link": 52
         },
         {
           "localized_name": "条件",
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 16
+          "link": 12
         }
       ],
       "outputs": [
@@ -542,7 +542,7 @@
           "name": "GUIDER",
           "type": "GUIDER",
           "links": [
-            19
+            15
           ]
         }
       ],
@@ -591,8 +591,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            14,
-            15
+            50
           ]
         }
       ],
@@ -642,7 +641,7 @@
           "name": "NOISE",
           "type": "NOISE",
           "links": [
-            18
+            14
           ]
         }
       ],
@@ -673,14 +672,14 @@
           "localized_name": "图像",
           "name": "images",
           "type": "IMAGE",
-          "link": 26
+          "link": 22
         },
         {
           "localized_name": "音频",
           "name": "audio",
           "shape": 7,
           "type": "AUDIO",
-          "link": 27
+          "link": 23
         },
         {
           "localized_name": "帧率",
@@ -708,7 +707,7 @@
           "name": "VIDEO",
           "type": "VIDEO",
           "links": [
-            28
+            24
           ]
         }
       ],
@@ -724,12 +723,12 @@
       "id": 136,
       "type": "MiniMaxH3ReferenceToVideo",
       "pos": [
-        750,
-        1550
+        820,
+        1600
       ],
       "size": [
-        500,
-        560
+        570,
+        760
       ],
       "flags": {},
       "order": 13,
@@ -739,67 +738,115 @@
           "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
-          "link": 9
+          "link": 7
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 10
+          "link": 8
         },
         {
           "localized_name": "audio_vae",
           "name": "audio_vae",
           "type": "VAE",
-          "link": 11
+          "link": 9
         },
         {
+          "name": "ref_images.ref_image_0",
+          "type": "IMAGE",
+          "link": 26,
           "label": "ref_image_0",
           "localized_name": "ref_images.ref_image_0",
-          "name": "ref_images.ref_image_0",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": 8
+          "shape": 7
         },
         {
+          "name": "ref_images.ref_image_1",
+          "type": "IMAGE",
+          "link": 28,
           "label": "ref_image_1",
           "localized_name": "ref_images.ref_image_1",
-          "name": "ref_images.ref_image_1",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
+          "shape": 7
         },
         {
+          "name": "ref_images.ref_image_2",
+          "type": "IMAGE",
+          "link": 30,
           "label": "ref_image_2",
           "localized_name": "ref_images.ref_image_2",
-          "name": "ref_images.ref_image_2",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
+          "shape": 7
         },
         {
+          "name": "ref_images.ref_image_3",
+          "type": "IMAGE",
+          "link": 32,
+          "label": "ref_image_3",
+          "localized_name": "ref_images.ref_image_3",
+          "shape": 7
+        },
+        {
+          "name": "ref_images.ref_image_4",
+          "type": "IMAGE",
+          "link": 34,
+          "label": "ref_image_4",
+          "localized_name": "ref_images.ref_image_4",
+          "shape": 7
+        },
+        {
+          "name": "ref_images.ref_image_5",
+          "type": "IMAGE",
+          "link": 36,
+          "label": "ref_image_5",
+          "localized_name": "ref_images.ref_image_5",
+          "shape": 7
+        },
+        {
+          "name": "ref_images.ref_image_6",
+          "type": "IMAGE",
+          "link": 38,
+          "label": "ref_image_6",
+          "localized_name": "ref_images.ref_image_6",
+          "shape": 7
+        },
+        {
+          "name": "ref_images.ref_image_7",
+          "type": "IMAGE",
+          "link": 40,
+          "label": "ref_image_7",
+          "localized_name": "ref_images.ref_image_7",
+          "shape": 7
+        },
+        {
+          "name": "ref_images.ref_image_8",
+          "type": "IMAGE",
+          "link": 42,
+          "label": "ref_image_8",
+          "localized_name": "ref_images.ref_image_8",
+          "shape": 7
+        },
+        {
+          "name": "ref_videos.ref_video_0",
+          "type": "IMAGE",
+          "link": 47,
           "label": "ref_video_0",
           "localized_name": "ref_videos.ref_video_0",
-          "name": "ref_videos.ref_video_0",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
+          "shape": 7
         },
         {
+          "name": "ref_video_audios.ref_video_audio_0",
+          "type": "AUDIO",
+          "link": 48,
           "label": "ref_video_audio_0",
           "localized_name": "ref_video_audios.ref_video_audio_0",
-          "name": "ref_video_audios.ref_video_audio_0",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": null
+          "shape": 7
         },
         {
+          "name": "ref_audios.ref_audio_0",
+          "type": "AUDIO",
+          "link": 49,
           "label": "ref_audio_0",
           "localized_name": "ref_audios.ref_audio_0",
-          "name": "ref_audios.ref_audio_0",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": null
+          "shape": 7
         },
         {
           "localized_name": "prompt",
@@ -808,7 +855,7 @@
           "widget": {
             "name": "prompt"
           },
-          "link": 6
+          "link": 5
         },
         {
           "localized_name": "width",
@@ -817,7 +864,7 @@
           "widget": {
             "name": "width"
           },
-          "link": 12
+          "link": 10
         },
         {
           "localized_name": "height",
@@ -826,7 +873,7 @@
           "widget": {
             "name": "height"
           },
-          "link": 13
+          "link": 11
         },
         {
           "localized_name": "length",
@@ -835,7 +882,7 @@
           "widget": {
             "name": "length"
           },
-          "link": 7
+          "link": 6
         },
         {
           "localized_name": "ref_image_size",
@@ -853,7 +900,7 @@
           "name": "positive",
           "type": "CONDITIONING",
           "links": [
-            16
+            12
           ]
         },
         {
@@ -861,7 +908,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            17
+            13
           ]
         }
       ],
@@ -878,63 +925,181 @@
     },
     {
       "id": 137,
-      "type": "LoadImage",
+      "type": "H3OptionalReferenceImages",
       "pos": [
         30,
-        640
+        20
       ],
       "size": [
-        380,
-        420
+        650,
+        500
       ],
       "flags": {},
       "order": 14,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "图像",
-          "name": "image",
+          "name": "image1",
           "type": "COMBO",
+          "link": null,
           "widget": {
-            "name": "image"
-          },
-          "link": null
+            "name": "image1"
+          }
         },
         {
-          "localized_name": "选择文件上传",
-          "name": "upload",
-          "type": "IMAGEUPLOAD",
+          "name": "image2",
+          "type": "COMBO",
+          "link": null,
           "widget": {
-            "name": "upload"
-          },
-          "link": null
+            "name": "image2"
+          }
+        },
+        {
+          "name": "image3",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image3"
+          }
+        },
+        {
+          "name": "image4",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image4"
+          }
+        },
+        {
+          "name": "image5",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image5"
+          }
+        },
+        {
+          "name": "image6",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image6"
+          }
+        },
+        {
+          "name": "image7",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image7"
+          }
+        },
+        {
+          "name": "image8",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image8"
+          }
+        },
+        {
+          "name": "image9",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image9"
+          }
         }
       ],
       "outputs": [
         {
-          "localized_name": "图像",
-          "name": "IMAGE",
+          "name": "image1",
           "type": "IMAGE",
           "links": [
-            3,
-            8
+            25,
+            26
           ]
         },
         {
-          "localized_name": "遮罩",
-          "name": "MASK",
-          "type": "MASK",
-          "links": []
+          "name": "image2",
+          "type": "IMAGE",
+          "links": [
+            27,
+            28
+          ]
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "links": [
+            29,
+            30
+          ]
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "links": [
+            31,
+            32
+          ]
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "links": [
+            33,
+            34
+          ]
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "links": [
+            35,
+            36
+          ]
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "links": [
+            37,
+            38
+          ]
+        },
+        {
+          "name": "image8",
+          "type": "IMAGE",
+          "links": [
+            39,
+            40
+          ]
+        },
+        {
+          "name": "image9",
+          "type": "IMAGE",
+          "links": [
+            41,
+            42
+          ]
         }
       ],
-      "properties": {
-        "Node name for S&R": "LoadImage"
-      },
       "widgets_values": [
         "example.png",
-        "image"
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)",
+        "(none)"
       ],
-      "title": "参考图 1 · 同时送给优化器和 H3（请替换）"
+      "properties": {
+        "Node name for S&R": "H3OptionalReferenceImages"
+      },
+      "title": "最多 9 张参考图（从 image1 连续选择）"
     },
     {
       "id": 138,
@@ -1031,7 +1196,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            9
+            7
           ]
         }
       ],
@@ -1095,7 +1260,7 @@
           "name": "length",
           "type": "INT",
           "links": [
-            7
+            6
           ]
         },
         {
@@ -1117,12 +1282,12 @@
       "id": 142,
       "type": "H3OfficialSkillQwenLocal",
       "pos": [
-        480,
-        40
+        760,
+        20
       ],
       "size": [
-        480,
-        440
+        560,
+        700
       ],
       "flags": {},
       "order": 18,
@@ -1192,12 +1357,67 @@
         {
           "name": "image1",
           "type": "IMAGE",
-          "link": 3
+          "link": 25
         },
         {
           "name": "image2",
           "type": "IMAGE",
-          "link": null
+          "link": 27
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 29
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": 31
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": 33
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "link": 37
+        },
+        {
+          "name": "image8",
+          "type": "IMAGE",
+          "link": 39
+        },
+        {
+          "name": "image9",
+          "type": "IMAGE",
+          "link": 41
+        },
+        {
+          "name": "reference_video",
+          "type": "IMAGE",
+          "link": 43
+        },
+        {
+          "name": "reference_video_fps",
+          "type": "FLOAT",
+          "link": 44
+        },
+        {
+          "name": "reference_video_audio",
+          "type": "AUDIO",
+          "link": 45
+        },
+        {
+          "name": "reference_audio",
+          "type": "AUDIO",
+          "link": 46
         }
       ],
       "outputs": [
@@ -1205,15 +1425,15 @@
           "name": "optimized_prompt",
           "type": "STRING",
           "links": [
-            4,
-            6
+            3,
+            5
           ]
         },
         {
           "name": "validation_report",
           "type": "STRING",
           "links": [
-            5
+            4
           ]
         }
       ],
@@ -1224,7 +1444,7 @@
         "fixed",
         0.7,
         4096,
-        16384,
+        32768,
         99
       ],
       "properties": {
@@ -1250,7 +1470,7 @@
         {
           "name": "source",
           "type": "*",
-          "link": 4
+          "link": 3
         }
       ],
       "outputs": [
@@ -1284,7 +1504,7 @@
         {
           "name": "source",
           "type": "*",
-          "link": 5
+          "link": 4
         }
       ],
       "outputs": [
@@ -1305,11 +1525,11 @@
       "type": "MarkdownNote",
       "pos": [
         30,
-        1120
+        1330
       ],
       "size": [
-        920,
-        300
+        720,
+        420
       ],
       "flags": {},
       "order": 21,
@@ -1317,12 +1537,178 @@
       "inputs": [],
       "outputs": [],
       "widgets_values": [
-        "# Qwen 本地 + H3 官方 Skill\n运行时自动加载 Qwen3.8-27B Q4 GGUF 与视觉投影器；完成官方格式改写和校验后，关闭 Qwen 进程释放显存，再由 H3 生成。无需 API 密钥、Ollama 或 LM Studio。\n\n修改原始描述和参考图即可。默认约 5 秒 / 124 帧 / 24fps。先用 H3_QwenLocal_PromptOnly 检查改写，再运行 H3_QwenLocal_Ref2VA。\n\n如有两张参考图，分别同时连接优化器与 H3，并保持编号一致。本模板不分析视频/音频参考。\n\n24GB 显存设置：Q4、16384 上下文、Qwen 全层 GPU；若加载失败，先关闭其他占显存程序，必要时减少 gpu_layers。首次加载可能较慢。结构校验不保证语义质量。"
+        "# 9图 + 视频 + 音频 · LoRA + Sage 加速\n在“最多 9 张参考图”节点内，从 image1 开始连续选择；留空项保持 (none)。图片会自动以相同编号同时连接到 Qwen 优化器和 H3。\n\n可选媒体节点默认都是 (none)。选择参考视频后会自动抽帧给 Qwen，并将完整帧和视频原声送给 H3；独立参考音频从第二个下拉框选择。Qwen 不能听音频，音频内容/用途必须写进原始创意。\n\n模型链：UNET → Turbo 8步 LoRA → MiniMax H3 Mem Eff Sage Patch → Guider/Scheduler。已移除会直接 import triton 的通用 Patch Sage Attention KJ。当前 Windows 环境使用 triton-windows 3.7.1。\n\n先用 PromptOnly 检查标签和语义。最多9图；本模板预接1视频及其原声、1个独立音频。"
       ],
       "properties": {
         "Node name for S&R": "MarkdownNote"
       },
       "title": "使用前必读"
+    },
+    {
+      "id": 154,
+      "type": "H3OptionalReferenceMedia",
+      "pos": [
+        30,
+        1120
+      ],
+      "size": [
+        650,
+        190
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_video",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "reference_video"
+          }
+        },
+        {
+          "name": "reference_audio",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "reference_audio"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video_frames",
+          "type": "IMAGE",
+          "links": [
+            43,
+            47
+          ]
+        },
+        {
+          "name": "video_soundtrack",
+          "type": "AUDIO",
+          "links": [
+            45,
+            48
+          ]
+        },
+        {
+          "name": "video_fps",
+          "type": "FLOAT",
+          "links": [
+            44
+          ]
+        },
+        {
+          "name": "standalone_audio",
+          "type": "AUDIO",
+          "links": [
+            46,
+            49
+          ]
+        }
+      ],
+      "widgets_values": [
+        "(none)",
+        "(none)"
+      ],
+      "properties": {
+        "Node name for S&R": "H3OptionalReferenceMedia"
+      },
+      "title": "可选参考视频 + 独立参考音频（不使用请选择 none）"
+    },
+    {
+      "id": 155,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        30,
+        1780
+      ],
+      "size": [
+        650,
+        90
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 50
+        },
+        {
+          "name": "lora_name",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "lora_name"
+          }
+        },
+        {
+          "name": "strength_model",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "strength_model"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            51
+          ]
+        }
+      ],
+      "widgets_values": [
+        "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+        1.0
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "title": "MiniMax H3 Turbo LoRA · 8步"
+    },
+    {
+      "id": 156,
+      "type": "MiniMaxH3MemoryEfficientSageAttentionPatch",
+      "pos": [
+        30,
+        1910
+      ],
+      "size": [
+        650,
+        90
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 51
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            52,
+            53
+          ]
+        }
+      ],
+      "widgets_values": [],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MemoryEfficientSageAttentionPatch"
+      },
+      "title": "MiniMax H3 专用省显存 Sage Attention"
     }
   ],
   "links": [
@@ -1344,14 +1730,6 @@
     ],
     [
       3,
-      137,
-      0,
-      142,
-      8,
-      "IMAGE"
-    ],
-    [
-      4,
       142,
       0,
       143,
@@ -1359,7 +1737,7 @@
       "STRING"
     ],
     [
-      5,
+      4,
       142,
       1,
       144,
@@ -1367,31 +1745,23 @@
       "STRING"
     ],
     [
-      6,
+      5,
       142,
       0,
       136,
-      9,
+      15,
       "STRING"
     ],
     [
-      7,
+      6,
       141,
       1,
       136,
-      12,
+      18,
       "INT"
     ],
     [
-      8,
-      137,
-      0,
-      136,
-      3,
-      "IMAGE"
-    ],
-    [
-      9,
+      7,
       128,
       0,
       136,
@@ -1399,7 +1769,7 @@
       "CLIP"
     ],
     [
-      10,
+      8,
       119,
       0,
       136,
@@ -1407,7 +1777,7 @@
       "VAE"
     ],
     [
-      11,
+      9,
       120,
       0,
       136,
@@ -1415,39 +1785,23 @@
       "VAE"
     ],
     [
-      12,
+      10,
       115,
       0,
       136,
-      10,
+      16,
       "INT"
     ],
     [
-      13,
+      11,
       115,
       1,
       136,
-      11,
+      17,
       "INT"
     ],
     [
-      14,
-      127,
-      0,
-      126,
-      0,
-      "MODEL"
-    ],
-    [
-      15,
-      127,
-      0,
-      124,
-      0,
-      "MODEL"
-    ],
-    [
-      16,
+      12,
       136,
       0,
       126,
@@ -1455,7 +1809,7 @@
       "CONDITIONING"
     ],
     [
-      17,
+      13,
       136,
       1,
       125,
@@ -1463,7 +1817,7 @@
       "LATENT"
     ],
     [
-      18,
+      14,
       129,
       0,
       125,
@@ -1471,7 +1825,7 @@
       "NOISE"
     ],
     [
-      19,
+      15,
       126,
       0,
       125,
@@ -1479,7 +1833,7 @@
       "GUIDER"
     ],
     [
-      20,
+      16,
       123,
       0,
       125,
@@ -1487,7 +1841,7 @@
       "SAMPLER"
     ],
     [
-      21,
+      17,
       124,
       0,
       125,
@@ -1495,7 +1849,7 @@
       "SIGMAS"
     ],
     [
-      22,
+      18,
       125,
       0,
       122,
@@ -1503,7 +1857,7 @@
       "LATENT"
     ],
     [
-      23,
+      19,
       125,
       0,
       121,
@@ -1511,7 +1865,7 @@
       "LATENT"
     ],
     [
-      24,
+      20,
       119,
       0,
       122,
@@ -1519,7 +1873,7 @@
       "VAE"
     ],
     [
-      25,
+      21,
       120,
       0,
       121,
@@ -1527,7 +1881,7 @@
       "VAE"
     ],
     [
-      26,
+      22,
       122,
       0,
       130,
@@ -1535,7 +1889,7 @@
       "IMAGE"
     ],
     [
-      27,
+      23,
       121,
       0,
       130,
@@ -1543,22 +1897,281 @@
       "AUDIO"
     ],
     [
-      28,
+      24,
       130,
       0,
       92,
       0,
       "VIDEO"
+    ],
+    [
+      25,
+      137,
+      0,
+      142,
+      8,
+      "IMAGE"
+    ],
+    [
+      26,
+      137,
+      0,
+      136,
+      3,
+      "IMAGE"
+    ],
+    [
+      27,
+      137,
+      1,
+      142,
+      9,
+      "IMAGE"
+    ],
+    [
+      28,
+      137,
+      1,
+      136,
+      4,
+      "IMAGE"
+    ],
+    [
+      29,
+      137,
+      2,
+      142,
+      10,
+      "IMAGE"
+    ],
+    [
+      30,
+      137,
+      2,
+      136,
+      5,
+      "IMAGE"
+    ],
+    [
+      31,
+      137,
+      3,
+      142,
+      11,
+      "IMAGE"
+    ],
+    [
+      32,
+      137,
+      3,
+      136,
+      6,
+      "IMAGE"
+    ],
+    [
+      33,
+      137,
+      4,
+      142,
+      12,
+      "IMAGE"
+    ],
+    [
+      34,
+      137,
+      4,
+      136,
+      7,
+      "IMAGE"
+    ],
+    [
+      35,
+      137,
+      5,
+      142,
+      13,
+      "IMAGE"
+    ],
+    [
+      36,
+      137,
+      5,
+      136,
+      8,
+      "IMAGE"
+    ],
+    [
+      37,
+      137,
+      6,
+      142,
+      14,
+      "IMAGE"
+    ],
+    [
+      38,
+      137,
+      6,
+      136,
+      9,
+      "IMAGE"
+    ],
+    [
+      39,
+      137,
+      7,
+      142,
+      15,
+      "IMAGE"
+    ],
+    [
+      40,
+      137,
+      7,
+      136,
+      10,
+      "IMAGE"
+    ],
+    [
+      41,
+      137,
+      8,
+      142,
+      16,
+      "IMAGE"
+    ],
+    [
+      42,
+      137,
+      8,
+      136,
+      11,
+      "IMAGE"
+    ],
+    [
+      43,
+      154,
+      0,
+      142,
+      17,
+      "IMAGE"
+    ],
+    [
+      44,
+      154,
+      2,
+      142,
+      18,
+      "FLOAT"
+    ],
+    [
+      45,
+      154,
+      1,
+      142,
+      19,
+      "AUDIO"
+    ],
+    [
+      46,
+      154,
+      3,
+      142,
+      20,
+      "AUDIO"
+    ],
+    [
+      47,
+      154,
+      0,
+      136,
+      12,
+      "IMAGE"
+    ],
+    [
+      48,
+      154,
+      1,
+      136,
+      13,
+      "AUDIO"
+    ],
+    [
+      49,
+      154,
+      3,
+      136,
+      14,
+      "AUDIO"
+    ],
+    [
+      50,
+      127,
+      0,
+      155,
+      0,
+      "MODEL"
+    ],
+    [
+      51,
+      155,
+      0,
+      156,
+      0,
+      "MODEL"
+    ],
+    [
+      52,
+      156,
+      0,
+      126,
+      0,
+      "MODEL"
+    ],
+    [
+      53,
+      156,
+      0,
+      124,
+      0,
+      "MODEL"
     ]
   ],
-  "groups": [],
+  "groups": [
+    {
+      "id": 10,
+      "title": "可选多参考素材",
+      "bounding": [
+        10,
+        0,
+        1370,
+        1320
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 11,
+      "title": "Turbo LoRA + H3专用 Sage 加速",
+      "bounding": [
+        10,
+        1740,
+        700,
+        310
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.5,
+      "scale": 0.46,
       "offset": [
-        790,
-        180
+        720,
+        170
       ]
     }
   },
