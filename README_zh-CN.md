@@ -25,7 +25,12 @@ GitHub，而是在安装时从固定上游版本下载并校验。
 - workflows/H3_QwenLocal_Ref2VA.json：提示词优化器直接连接 MiniMax H3
   Ref2VA 视频和音频生成链，并启用 8 步 Turbo LoRA 与 H3 专用 SageAttention。
 
-完整工作流会自动继续生成视频，提示词预览节点不是人工审批关卡。
+完整工作流新增“提示词来源 / 手动编辑”节点：
+
+- **自动模式**：Qwen 输出直接送入 MiniMax，继续生成视频。
+- **手动模式**：先运行 PromptOnly，将 Qwen 输出复制到完整工作流的 `manual_prompt` 编辑框；修改后切换为手动模式并运行。MiniMax 使用修改稿，不再调用 Qwen。
+
+手动模式不会自动暂停等待编辑，也不会重新校验或改写修改稿。空编辑框会报错。预览显示实际送入 MiniMax 的提示词。
 
 ## 已测试配置
 
@@ -181,7 +186,7 @@ $env:COMFYUI_ROOT = 'C:\path\to\ComfyUI'
 & "$env:COMFYUI_ROOT\..\python_embeded\python.exe" -s .\tests\test_qwen_managed.py
 ~~~
 
-当前版本通过了 14 项自动化测试和 ComfyUI 工作流原生校验，并使用真实
+当前版本通过了 15 项自动化测试和 ComfyUI 工作流原生校验，并使用真实
 图片完成过 Qwen 优化测试。本项目尚未对完整 H3 视频渲染进行基准测试。
 
 ## 来源与许可

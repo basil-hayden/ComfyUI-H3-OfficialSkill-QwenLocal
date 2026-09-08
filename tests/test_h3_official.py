@@ -23,6 +23,15 @@ REF_MEDIA = "subject_definitions: <Subject 1> is the cat from <Picture 1>, also 
 
 
 class Tests(unittest.TestCase):
+    def test_prompt_source_modes(self):
+        selector = h3.H3PromptSource()
+        self.assertEqual(selector.check_lazy_status(selector.MANUAL, "edited"), [])
+        self.assertEqual(selector.select(selector.MANUAL, " edited\n")[0], " edited\n")
+        with self.assertRaises(ValueError):
+            selector.select(selector.MANUAL, "  ")
+        self.assertEqual(selector.check_lazy_status(selector.AUTO, ""), ["qwen_prompt", "qwen_report"])
+        self.assertEqual(selector.select(selector.AUTO, "ignored", BASE, "checked"), (BASE, "checked"))
+
     def test_official_loading_and_frame_grid(self):
         for mode in h3.MODES:
             skill, frames, rules = h3.H3OfficialSkill().load(mode, 5.0)
@@ -151,7 +160,7 @@ class Tests(unittest.TestCase):
                 def source(name):
                     id = next(s["link"] for s in nodes[136]["inputs"] if s["name"] == name)
                     return next(l[1] for l in data["links"] if l[0] == id)
-                self.assertEqual(source("prompt"), 142)
+                self.assertEqual(source("prompt"), 157)
                 self.assertEqual(source("length"), 141)
                 self.assertEqual(source("ref_images.ref_image_0"), 137)
                 self.assertEqual(source("ref_images.ref_image_8"), 137)

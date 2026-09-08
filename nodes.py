@@ -401,13 +401,49 @@ class H3OfficialSkillOptimize:
             return text, report
 
 
+class H3PromptSource:
+    AUTO = "自动：Qwen 输出直接生成"
+    MANUAL = "手动：使用编辑后的提示词"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {"required": {
+            "mode": ([cls.AUTO, cls.MANUAL],),
+            "manual_prompt": ("STRING", {"multiline": True, "default": ""}),
+        }, "optional": {
+            "qwen_prompt": ("STRING", {"forceInput": True, "lazy": True}),
+            "qwen_report": ("STRING", {"forceInput": True, "lazy": True}),
+        }}
+
+    RETURN_TYPES = ("STRING", "STRING")
+    RETURN_NAMES = ("prompt", "report")
+    FUNCTION = "select"
+    CATEGORY = "MiniMax H3/Official Skill"
+
+    def check_lazy_status(self, mode, manual_prompt, qwen_prompt=None, qwen_report=None):
+        if mode == self.AUTO:
+            return [name for name, value in (("qwen_prompt", qwen_prompt), ("qwen_report", qwen_report)) if value is None]
+        return []
+
+    def select(self, mode, manual_prompt, qwen_prompt=None, qwen_report=None):
+        if mode == self.MANUAL:
+            if not manual_prompt.strip():
+                raise ValueError("手动模式的提示词为空。先运行 PromptOnly，将 Qwen 输出复制到编辑框并修改。")
+            return manual_prompt, "手动修改稿已直接送入 H3；未重新调用 Qwen，未执行官方格式校验。"
+        if mode != self.AUTO or not qwen_prompt or not qwen_prompt.strip():
+            raise ValueError("自动模式需要连接有效的 Qwen 输出。")
+        return qwen_prompt, qwen_report or "使用 Qwen 输出。"
+
+
 NODE_CLASS_MAPPINGS = {
+    "H3PromptSource": H3PromptSource,
     "H3OfficialSkill": H3OfficialSkill,
     "H3OfficialSkillOptimize": H3OfficialSkillOptimize,
     "H3OptionalReferenceImages": H3OptionalReferenceImages,
     "H3OptionalReferenceMedia": H3OptionalReferenceMedia,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "H3PromptSource": "H3 · 提示词来源 / 手动编辑",
     "H3OfficialSkill": "H3 官方 Skill · 加载规则 / 时长",
     "H3OfficialSkillOptimize": "H3 官方 Skill · 自动优化提示词",
     "H3OptionalReferenceImages": "H3 · 最多 9 张参考图",

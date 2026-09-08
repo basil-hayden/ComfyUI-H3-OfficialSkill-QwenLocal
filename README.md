@@ -22,7 +22,12 @@ binaries are downloaded during installation and are never committed here.
   MiniMax H3 Ref2VA generation chain with the 8-step Turbo LoRA and H3-specific
   SageAttention patch enabled.
 
-The full workflow is automated; its preview node is not an approval gate.
+The full workflow includes a prompt source selector. Automatic mode sends Qwen's
+output directly to MiniMax. For manual editing, run PromptOnly first, copy its
+output into `manual_prompt` in the full workflow, edit it, select manual mode,
+and run. Manual mode skips Qwen and sends the text unchanged without format
+validation; an empty edit box is rejected. This is a two-run editing process,
+not an automatic pause. The preview shows the actual prompt sent to MiniMax.
 
 ## Tested configuration
 
@@ -161,7 +166,7 @@ $env:COMFYUI_ROOT = 'C:\path\to\ComfyUI'
 & "$env:COMFYUI_ROOT\..\python_embeded\python.exe" -s .\tests\test_qwen_managed.py
 ~~~
 
-The tested release passed 14 automated tests and native ComfyUI validation for
+The tested release passed 15 automated tests and native ComfyUI validation for
 the workflows. The real Qwen optimizer was exercised with an image. A complete
 H3 video render has not been benchmarked by this project.
 

@@ -1,6 +1,6 @@
 {
-  "last_node_id": 156,
-  "last_link_id": 53,
+  "last_node_id": 157,
+  "last_link_id": 55,
   "nodes": [
     {
       "id": 92,
@@ -21,7 +21,7 @@
           "localized_name": "视频",
           "name": "video",
           "type": "VIDEO",
-          "link": 24
+          "link": 21
         },
         {
           "localized_name": "文件名前缀",
@@ -116,7 +116,7 @@
           "name": "width",
           "type": "INT",
           "links": [
-            10
+            7
           ]
         },
         {
@@ -124,7 +124,7 @@
           "name": "height",
           "type": "INT",
           "links": [
-            11
+            8
           ]
         }
       ],
@@ -171,8 +171,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            8,
-            20
+            5,
+            17
           ]
         }
       ],
@@ -221,8 +221,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            9,
-            21
+            6,
+            18
           ]
         }
       ],
@@ -261,13 +261,13 @@
           "localized_name": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 19
+          "link": 16
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 21
+          "link": 18
         }
       ],
       "outputs": [
@@ -276,7 +276,7 @@
           "name": "AUDIO",
           "type": "AUDIO",
           "links": [
-            23
+            20
           ]
         }
       ],
@@ -306,13 +306,13 @@
           "localized_name": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 18
+          "link": 15
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 20
+          "link": 17
         }
       ],
       "outputs": [
@@ -321,7 +321,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            22
+            19
           ]
         }
       ],
@@ -361,7 +361,7 @@
           "name": "SAMPLER",
           "type": "SAMPLER",
           "links": [
-            16
+            13
           ]
         }
       ],
@@ -391,7 +391,7 @@
           "localized_name": "模型",
           "name": "model",
           "type": "MODEL",
-          "link": 53
+          "link": 55
         },
         {
           "localized_name": "调度器",
@@ -427,7 +427,7 @@
           "name": "SIGMAS",
           "type": "SIGMAS",
           "links": [
-            17
+            14
           ]
         }
       ],
@@ -459,31 +459,31 @@
           "localized_name": "噪波",
           "name": "noise",
           "type": "NOISE",
-          "link": 14
+          "link": 11
         },
         {
           "localized_name": "引导器",
           "name": "guider",
           "type": "GUIDER",
-          "link": 15
+          "link": 12
         },
         {
           "localized_name": "采样器",
           "name": "sampler",
           "type": "SAMPLER",
-          "link": 16
+          "link": 13
         },
         {
           "localized_name": "西格玛",
           "name": "sigmas",
           "type": "SIGMAS",
-          "link": 17
+          "link": 14
         },
         {
           "localized_name": "Latent图像",
           "name": "latent_image",
           "type": "LATENT",
-          "link": 13
+          "link": 10
         }
       ],
       "outputs": [
@@ -492,8 +492,8 @@
           "name": "output",
           "type": "LATENT",
           "links": [
-            18,
-            19
+            15,
+            16
           ]
         },
         {
@@ -527,13 +527,13 @@
           "localized_name": "模型",
           "name": "model",
           "type": "MODEL",
-          "link": 52
+          "link": 54
         },
         {
           "localized_name": "条件",
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 12
+          "link": 9
         }
       ],
       "outputs": [
@@ -542,7 +542,7 @@
           "name": "GUIDER",
           "type": "GUIDER",
           "links": [
-            15
+            12
           ]
         }
       ],
@@ -591,7 +591,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            50
+            52
           ]
         }
       ],
@@ -641,7 +641,7 @@
           "name": "NOISE",
           "type": "NOISE",
           "links": [
-            14
+            11
           ]
         }
       ],
@@ -672,14 +672,14 @@
           "localized_name": "图像",
           "name": "images",
           "type": "IMAGE",
-          "link": 22
+          "link": 19
         },
         {
           "localized_name": "音频",
           "name": "audio",
           "shape": 7,
           "type": "AUDIO",
-          "link": 23
+          "link": 20
         },
         {
           "localized_name": "帧率",
@@ -707,7 +707,7 @@
           "name": "VIDEO",
           "type": "VIDEO",
           "links": [
-            24
+            21
           ]
         }
       ],
@@ -738,24 +738,24 @@
           "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
-          "link": 7
+          "link": 4
         },
         {
           "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
-          "link": 8
+          "link": 5
         },
         {
           "localized_name": "audio_vae",
           "name": "audio_vae",
           "type": "VAE",
-          "link": 9
+          "link": 6
         },
         {
           "name": "ref_images.ref_image_0",
           "type": "IMAGE",
-          "link": 26,
+          "link": 23,
           "label": "ref_image_0",
           "localized_name": "ref_images.ref_image_0",
           "shape": 7
@@ -763,7 +763,7 @@
         {
           "name": "ref_images.ref_image_1",
           "type": "IMAGE",
-          "link": 28,
+          "link": 25,
           "label": "ref_image_1",
           "localized_name": "ref_images.ref_image_1",
           "shape": 7
@@ -771,7 +771,7 @@
         {
           "name": "ref_images.ref_image_2",
           "type": "IMAGE",
-          "link": 30,
+          "link": 27,
           "label": "ref_image_2",
           "localized_name": "ref_images.ref_image_2",
           "shape": 7
@@ -779,7 +779,7 @@
         {
           "name": "ref_images.ref_image_3",
           "type": "IMAGE",
-          "link": 32,
+          "link": 29,
           "label": "ref_image_3",
           "localized_name": "ref_images.ref_image_3",
           "shape": 7
@@ -787,7 +787,7 @@
         {
           "name": "ref_images.ref_image_4",
           "type": "IMAGE",
-          "link": 34,
+          "link": 31,
           "label": "ref_image_4",
           "localized_name": "ref_images.ref_image_4",
           "shape": 7
@@ -795,7 +795,7 @@
         {
           "name": "ref_images.ref_image_5",
           "type": "IMAGE",
-          "link": 36,
+          "link": 33,
           "label": "ref_image_5",
           "localized_name": "ref_images.ref_image_5",
           "shape": 7
@@ -803,7 +803,7 @@
         {
           "name": "ref_images.ref_image_6",
           "type": "IMAGE",
-          "link": 38,
+          "link": 35,
           "label": "ref_image_6",
           "localized_name": "ref_images.ref_image_6",
           "shape": 7
@@ -811,7 +811,7 @@
         {
           "name": "ref_images.ref_image_7",
           "type": "IMAGE",
-          "link": 40,
+          "link": 37,
           "label": "ref_image_7",
           "localized_name": "ref_images.ref_image_7",
           "shape": 7
@@ -819,7 +819,7 @@
         {
           "name": "ref_images.ref_image_8",
           "type": "IMAGE",
-          "link": 42,
+          "link": 39,
           "label": "ref_image_8",
           "localized_name": "ref_images.ref_image_8",
           "shape": 7
@@ -827,7 +827,7 @@
         {
           "name": "ref_videos.ref_video_0",
           "type": "IMAGE",
-          "link": 47,
+          "link": 49,
           "label": "ref_video_0",
           "localized_name": "ref_videos.ref_video_0",
           "shape": 7
@@ -835,7 +835,7 @@
         {
           "name": "ref_video_audios.ref_video_audio_0",
           "type": "AUDIO",
-          "link": 48,
+          "link": 50,
           "label": "ref_video_audio_0",
           "localized_name": "ref_video_audios.ref_video_audio_0",
           "shape": 7
@@ -843,7 +843,7 @@
         {
           "name": "ref_audios.ref_audio_0",
           "type": "AUDIO",
-          "link": 49,
+          "link": 51,
           "label": "ref_audio_0",
           "localized_name": "ref_audios.ref_audio_0",
           "shape": 7
@@ -855,7 +855,7 @@
           "widget": {
             "name": "prompt"
           },
-          "link": 5
+          "link": 46
         },
         {
           "localized_name": "width",
@@ -864,7 +864,7 @@
           "widget": {
             "name": "width"
           },
-          "link": 10
+          "link": 7
         },
         {
           "localized_name": "height",
@@ -873,7 +873,7 @@
           "widget": {
             "name": "height"
           },
-          "link": 11
+          "link": 8
         },
         {
           "localized_name": "length",
@@ -882,7 +882,7 @@
           "widget": {
             "name": "length"
           },
-          "link": 6
+          "link": 3
         },
         {
           "localized_name": "ref_image_size",
@@ -900,7 +900,7 @@
           "name": "positive",
           "type": "CONDITIONING",
           "links": [
-            12
+            9
           ]
         },
         {
@@ -908,7 +908,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            13
+            10
           ]
         }
       ],
@@ -1016,72 +1016,72 @@
           "name": "image1",
           "type": "IMAGE",
           "links": [
-            25,
-            26
+            22,
+            23
           ]
         },
         {
           "name": "image2",
           "type": "IMAGE",
           "links": [
-            27,
-            28
+            24,
+            25
           ]
         },
         {
           "name": "image3",
           "type": "IMAGE",
           "links": [
-            29,
-            30
+            26,
+            27
           ]
         },
         {
           "name": "image4",
           "type": "IMAGE",
           "links": [
-            31,
-            32
+            28,
+            29
           ]
         },
         {
           "name": "image5",
           "type": "IMAGE",
           "links": [
-            33,
-            34
+            30,
+            31
           ]
         },
         {
           "name": "image6",
           "type": "IMAGE",
           "links": [
-            35,
-            36
+            32,
+            33
           ]
         },
         {
           "name": "image7",
           "type": "IMAGE",
           "links": [
-            37,
-            38
+            34,
+            35
           ]
         },
         {
           "name": "image8",
           "type": "IMAGE",
           "links": [
-            39,
-            40
+            36,
+            37
           ]
         },
         {
           "name": "image9",
           "type": "IMAGE",
           "links": [
-            41,
-            42
+            38,
+            39
           ]
         }
       ],
@@ -1196,7 +1196,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            7
+            4
           ]
         }
       ],
@@ -1260,7 +1260,7 @@
           "name": "length",
           "type": "INT",
           "links": [
-            6
+            3
           ]
         },
         {
@@ -1357,67 +1357,67 @@
         {
           "name": "image1",
           "type": "IMAGE",
-          "link": 25
+          "link": 22
         },
         {
           "name": "image2",
           "type": "IMAGE",
-          "link": 27
+          "link": 24
         },
         {
           "name": "image3",
           "type": "IMAGE",
-          "link": 29
+          "link": 26
         },
         {
           "name": "image4",
           "type": "IMAGE",
-          "link": 31
+          "link": 28
         },
         {
           "name": "image5",
           "type": "IMAGE",
-          "link": 33
+          "link": 30
         },
         {
           "name": "image6",
           "type": "IMAGE",
-          "link": 35
+          "link": 32
         },
         {
           "name": "image7",
           "type": "IMAGE",
-          "link": 37
+          "link": 34
         },
         {
           "name": "image8",
           "type": "IMAGE",
-          "link": 39
+          "link": 36
         },
         {
           "name": "image9",
           "type": "IMAGE",
-          "link": 41
+          "link": 38
         },
         {
           "name": "reference_video",
           "type": "IMAGE",
-          "link": 43
+          "link": 40
         },
         {
           "name": "reference_video_fps",
           "type": "FLOAT",
-          "link": 44
+          "link": 41
         },
         {
           "name": "reference_video_audio",
           "type": "AUDIO",
-          "link": 45
+          "link": 42
         },
         {
           "name": "reference_audio",
           "type": "AUDIO",
-          "link": 46
+          "link": 43
         }
       ],
       "outputs": [
@@ -1425,15 +1425,14 @@
           "name": "optimized_prompt",
           "type": "STRING",
           "links": [
-            3,
-            5
+            44
           ]
         },
         {
           "name": "validation_report",
           "type": "STRING",
           "links": [
-            4
+            45
           ]
         }
       ],
@@ -1470,7 +1469,7 @@
         {
           "name": "source",
           "type": "*",
-          "link": 3
+          "link": 47
         }
       ],
       "outputs": [
@@ -1484,7 +1483,7 @@
       "properties": {
         "Node name for S&R": "PreviewAny"
       },
-      "title": "03 · 优化结果（自动送入 H3）"
+      "title": "实际送入 MiniMax 的提示词"
     },
     {
       "id": 144,
@@ -1504,7 +1503,7 @@
         {
           "name": "source",
           "type": "*",
-          "link": 4
+          "link": 48
         }
       ],
       "outputs": [
@@ -1518,7 +1517,7 @@
       "properties": {
         "Node name for S&R": "PreviewAny"
       },
-      "title": "格式检查 / 官方版本"
+      "title": "当前提示词来源 / 检查报告"
     },
     {
       "id": 145,
@@ -1537,7 +1536,7 @@
       "inputs": [],
       "outputs": [],
       "widgets_values": [
-        "# 9图 + 视频 + 音频 · LoRA + Sage 加速\n在“最多 9 张参考图”节点内，从 image1 开始连续选择；留空项保持 (none)。图片会自动以相同编号同时连接到 Qwen 优化器和 H3。\n\n可选媒体节点默认都是 (none)。选择参考视频后会自动抽帧给 Qwen，并将完整帧和视频原声送给 H3；独立参考音频从第二个下拉框选择。Qwen 不能听音频，音频内容/用途必须写进原始创意。\n\n模型链：UNET → Turbo 8步 LoRA → MiniMax H3 Mem Eff Sage Patch → Guider/Scheduler。已移除会直接 import triton 的通用 Patch Sage Attention KJ。当前 Windows 环境使用 triton-windows 3.7.1。\n\n先用 PromptOnly 检查标签和语义。最多9图；本模板预接1视频及其原声、1个独立音频。"
+        "# 9图 + 视频 + 音频 · LoRA + Sage 加速\n在“最多 9 张参考图”节点内，从 image1 开始连续选择；留空项保持 (none)。图片会自动以相同编号同时连接到 Qwen 优化器和 H3。\n\n可选媒体节点默认都是 (none)。选择参考视频后会自动抽帧给 Qwen，并将完整帧和视频原声送给 H3；独立参考音频从第二个下拉框选择。Qwen 不能听音频，音频内容/用途必须写进原始创意。\n\n模型链：UNET → Turbo 8步 LoRA → MiniMax H3 Mem Eff Sage Patch → Guider/Scheduler。已移除会直接 import triton 的通用 Patch Sage Attention KJ。当前 Windows 环境使用 triton-windows 3.7.1。\n\n提示词来源默认自动直传。需要修改时，先运行 PromptOnly，复制输出到手动编辑框；切换手动模式后再运行完整工作流。手动模式不调用Qwen，也不会自动改写或校验修改稿。最多9图；本模板预接1视频及其原声、1个独立音频。"
       ],
       "properties": {
         "Node name for S&R": "MarkdownNote"
@@ -1581,31 +1580,31 @@
           "name": "video_frames",
           "type": "IMAGE",
           "links": [
-            43,
-            47
+            40,
+            49
           ]
         },
         {
           "name": "video_soundtrack",
           "type": "AUDIO",
           "links": [
-            45,
-            48
+            42,
+            50
           ]
         },
         {
           "name": "video_fps",
           "type": "FLOAT",
           "links": [
-            44
+            41
           ]
         },
         {
           "name": "standalone_audio",
           "type": "AUDIO",
           "links": [
-            46,
-            49
+            43,
+            51
           ]
         }
       ],
@@ -1636,7 +1635,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 50
+          "link": 52
         },
         {
           "name": "lora_name",
@@ -1660,7 +1659,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            51
+            53
           ]
         }
       ],
@@ -1691,7 +1690,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 51
+          "link": 53
         }
       ],
       "outputs": [
@@ -1699,8 +1698,8 @@
           "name": "model",
           "type": "MODEL",
           "links": [
-            52,
-            53
+            54,
+            55
           ]
         }
       ],
@@ -1709,6 +1708,74 @@
         "Node name for S&R": "MiniMaxH3MemoryEfficientSageAttentionPatch"
       },
       "title": "MiniMax H3 专用省显存 Sage Attention"
+    },
+    {
+      "id": 157,
+      "type": "H3PromptSource",
+      "pos": [
+        1450,
+        780
+      ],
+      "size": [
+        650,
+        520
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mode",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "mode"
+          }
+        },
+        {
+          "name": "manual_prompt",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "manual_prompt"
+          }
+        },
+        {
+          "name": "qwen_prompt",
+          "type": "STRING",
+          "link": 44
+        },
+        {
+          "name": "qwen_report",
+          "type": "STRING",
+          "link": 45
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            46,
+            47
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": [
+            48
+          ]
+        }
+      ],
+      "widgets_values": [
+        "自动：Qwen 输出直接生成",
+        ""
+      ],
+      "properties": {
+        "Node name for S&R": "H3PromptSource"
+      },
+      "title": "提示词来源：自动直传 / 手动编辑后生成"
     }
   ],
   "links": [
@@ -1730,30 +1797,6 @@
     ],
     [
       3,
-      142,
-      0,
-      143,
-      0,
-      "STRING"
-    ],
-    [
-      4,
-      142,
-      1,
-      144,
-      0,
-      "STRING"
-    ],
-    [
-      5,
-      142,
-      0,
-      136,
-      15,
-      "STRING"
-    ],
-    [
-      6,
       141,
       1,
       136,
@@ -1761,7 +1804,7 @@
       "INT"
     ],
     [
-      7,
+      4,
       128,
       0,
       136,
@@ -1769,7 +1812,7 @@
       "CLIP"
     ],
     [
-      8,
+      5,
       119,
       0,
       136,
@@ -1777,7 +1820,7 @@
       "VAE"
     ],
     [
-      9,
+      6,
       120,
       0,
       136,
@@ -1785,7 +1828,7 @@
       "VAE"
     ],
     [
-      10,
+      7,
       115,
       0,
       136,
@@ -1793,7 +1836,7 @@
       "INT"
     ],
     [
-      11,
+      8,
       115,
       1,
       136,
@@ -1801,7 +1844,7 @@
       "INT"
     ],
     [
-      12,
+      9,
       136,
       0,
       126,
@@ -1809,7 +1852,7 @@
       "CONDITIONING"
     ],
     [
-      13,
+      10,
       136,
       1,
       125,
@@ -1817,7 +1860,7 @@
       "LATENT"
     ],
     [
-      14,
+      11,
       129,
       0,
       125,
@@ -1825,7 +1868,7 @@
       "NOISE"
     ],
     [
-      15,
+      12,
       126,
       0,
       125,
@@ -1833,7 +1876,7 @@
       "GUIDER"
     ],
     [
-      16,
+      13,
       123,
       0,
       125,
@@ -1841,7 +1884,7 @@
       "SAMPLER"
     ],
     [
-      17,
+      14,
       124,
       0,
       125,
@@ -1849,7 +1892,7 @@
       "SIGMAS"
     ],
     [
-      18,
+      15,
       125,
       0,
       122,
@@ -1857,7 +1900,7 @@
       "LATENT"
     ],
     [
-      19,
+      16,
       125,
       0,
       121,
@@ -1865,7 +1908,7 @@
       "LATENT"
     ],
     [
-      20,
+      17,
       119,
       0,
       122,
@@ -1873,7 +1916,7 @@
       "VAE"
     ],
     [
-      21,
+      18,
       120,
       0,
       121,
@@ -1881,7 +1924,7 @@
       "VAE"
     ],
     [
-      22,
+      19,
       122,
       0,
       130,
@@ -1889,7 +1932,7 @@
       "IMAGE"
     ],
     [
-      23,
+      20,
       121,
       0,
       130,
@@ -1897,7 +1940,7 @@
       "AUDIO"
     ],
     [
-      24,
+      21,
       130,
       0,
       92,
@@ -1905,7 +1948,7 @@
       "VIDEO"
     ],
     [
-      25,
+      22,
       137,
       0,
       142,
@@ -1913,7 +1956,7 @@
       "IMAGE"
     ],
     [
-      26,
+      23,
       137,
       0,
       136,
@@ -1921,7 +1964,7 @@
       "IMAGE"
     ],
     [
-      27,
+      24,
       137,
       1,
       142,
@@ -1929,7 +1972,7 @@
       "IMAGE"
     ],
     [
-      28,
+      25,
       137,
       1,
       136,
@@ -1937,7 +1980,7 @@
       "IMAGE"
     ],
     [
-      29,
+      26,
       137,
       2,
       142,
@@ -1945,7 +1988,7 @@
       "IMAGE"
     ],
     [
-      30,
+      27,
       137,
       2,
       136,
@@ -1953,7 +1996,7 @@
       "IMAGE"
     ],
     [
-      31,
+      28,
       137,
       3,
       142,
@@ -1961,7 +2004,7 @@
       "IMAGE"
     ],
     [
-      32,
+      29,
       137,
       3,
       136,
@@ -1969,7 +2012,7 @@
       "IMAGE"
     ],
     [
-      33,
+      30,
       137,
       4,
       142,
@@ -1977,7 +2020,7 @@
       "IMAGE"
     ],
     [
-      34,
+      31,
       137,
       4,
       136,
@@ -1985,7 +2028,7 @@
       "IMAGE"
     ],
     [
-      35,
+      32,
       137,
       5,
       142,
@@ -1993,7 +2036,7 @@
       "IMAGE"
     ],
     [
-      36,
+      33,
       137,
       5,
       136,
@@ -2001,7 +2044,7 @@
       "IMAGE"
     ],
     [
-      37,
+      34,
       137,
       6,
       142,
@@ -2009,7 +2052,7 @@
       "IMAGE"
     ],
     [
-      38,
+      35,
       137,
       6,
       136,
@@ -2017,7 +2060,7 @@
       "IMAGE"
     ],
     [
-      39,
+      36,
       137,
       7,
       142,
@@ -2025,7 +2068,7 @@
       "IMAGE"
     ],
     [
-      40,
+      37,
       137,
       7,
       136,
@@ -2033,7 +2076,7 @@
       "IMAGE"
     ],
     [
-      41,
+      38,
       137,
       8,
       142,
@@ -2041,7 +2084,7 @@
       "IMAGE"
     ],
     [
-      42,
+      39,
       137,
       8,
       136,
@@ -2049,7 +2092,7 @@
       "IMAGE"
     ],
     [
-      43,
+      40,
       154,
       0,
       142,
@@ -2057,7 +2100,7 @@
       "IMAGE"
     ],
     [
-      44,
+      41,
       154,
       2,
       142,
@@ -2065,7 +2108,7 @@
       "FLOAT"
     ],
     [
-      45,
+      42,
       154,
       1,
       142,
@@ -2073,7 +2116,7 @@
       "AUDIO"
     ],
     [
-      46,
+      43,
       154,
       3,
       142,
@@ -2081,7 +2124,47 @@
       "AUDIO"
     ],
     [
+      44,
+      142,
+      0,
+      157,
+      2,
+      "STRING"
+    ],
+    [
+      45,
+      142,
+      1,
+      157,
+      3,
+      "STRING"
+    ],
+    [
+      46,
+      157,
+      0,
+      136,
+      15,
+      "STRING"
+    ],
+    [
       47,
+      157,
+      0,
+      143,
+      0,
+      "STRING"
+    ],
+    [
+      48,
+      157,
+      1,
+      144,
+      0,
+      "STRING"
+    ],
+    [
+      49,
       154,
       0,
       136,
@@ -2089,7 +2172,7 @@
       "IMAGE"
     ],
     [
-      48,
+      50,
       154,
       1,
       136,
@@ -2097,7 +2180,7 @@
       "AUDIO"
     ],
     [
-      49,
+      51,
       154,
       3,
       136,
@@ -2105,7 +2188,7 @@
       "AUDIO"
     ],
     [
-      50,
+      52,
       127,
       0,
       155,
@@ -2113,7 +2196,7 @@
       "MODEL"
     ],
     [
-      51,
+      53,
       155,
       0,
       156,
@@ -2121,7 +2204,7 @@
       "MODEL"
     ],
     [
-      52,
+      54,
       156,
       0,
       126,
@@ -2129,7 +2212,7 @@
       "MODEL"
     ],
     [
-      53,
+      55,
       156,
       0,
       124,
